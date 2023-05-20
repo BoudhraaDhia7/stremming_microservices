@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package reservation;
+
+message Reservation {
+  string id = 1;
+  string name = 2;
+  string movieId = 3;
+  // Add more fields as per your reservation data model
+}
+
+service ReservationService {
+  rpc GetReservations(GetReservationsRequest) returns (GetReservationsResponse) {}
+  // rpc GetReservationById(GetReservationByIdRequest) returns (Reservation) {}
+  // rpc CreateReservation(CreateReservationRequest) returns (Reservation) {}
+  // rpc UpdateReservation(UpdateReservationRequest) returns (Reservation) {}
+  // rpc DeleteReservation(DeleteReservationRequest) returns (Reservation) {}
+}
+
+message GetReservationsRequest {}
+
+message GetReservationsResponse {
+  repeated Reservation reservations = 1;
+}
+
+message GetReservationByIdRequest {
+  string id = 1;
+}
+
+message CreateReservationRequest {
+  string name = 1;
+  string movieId = 2;
+}
+
+message UpdateReservationRequest {
+  string id = 1;
+  string name = 2;
+  string movieId = 3;
+}
+
+message DeleteReservationRequest {
+  string id = 1;
+}
