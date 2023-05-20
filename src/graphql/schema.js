@@ -1,5 +1,6 @@
 const { gql } = require("apollo-server-express");
 
+// The GraphQL schema in string form - this is the schema definition language, or SDL
 const typeDefs = gql`
   type Movie {
     id: Int

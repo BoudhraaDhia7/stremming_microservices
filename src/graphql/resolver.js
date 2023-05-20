@@ -2,11 +2,13 @@ const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 const path = require("path");
 
+// Load the protobuf
 const movieProtoPath = path.join(
   __dirname,
   "../../microservice1/movieService.proto"
 );
 
+// Load the protobuf from the movie service definition and create a gRPC client from it
 const movieProtoDefinition = protoLoader.loadSync(movieProtoPath, {
   keepCase: true,
   longs: String,
@@ -14,14 +16,16 @@ const movieProtoDefinition = protoLoader.loadSync(movieProtoPath, {
   defaults: true,
   oneofs: true,
 });
+// Load the protobuf
 const movieProto = grpc.loadPackageDefinition(movieProtoDefinition).movie;
 
-// Create a gRPC client
+// Create a gRPC client for the movie service defined in the movieService.proto file
 const client = new movieProto.MovieService(
   "localhost:50051",
   grpc.credentials.createInsecure()
 );
 
+// Resolvers define the technique for fetching the types defined in the schema above
 const movieResolver = {
   Query: {
     movies: () => {

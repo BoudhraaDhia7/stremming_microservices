@@ -10,7 +10,7 @@ const db = new sqlite3.Database("../../database.db", (err) => {
   console.log("Base de données connectée.");
 });
 
-// Kafka configuration
+// Kafka configuration settings (change the kafkaHost IP address to your Docker machine IP if you are using Docker Toolbox)
 const kafkaClient = new kafka.KafkaClient({ kafkaHost: "localhost:9092" });
 const producer = new kafka.Producer(kafkaClient);
 
@@ -29,12 +29,14 @@ function sendMessage(topic, message) {
 // db.run(`...`);
 
 // Define the Reservation model
+
 class Reservation {
   constructor(name, movie_id) {
     this.name = name;
     this.movie_id = movie_id;
   }
 
+  // Define the getAll method to retrieve all reservations from the database
   static getAll(callback) {
     db.all("SELECT * from reservations;", [], function (err, rows) {
       if (err) {

@@ -7,6 +7,7 @@ const movieProtoPath = path.join(
   "../../microservice1/movieService.proto"
 );
 
+// Load the protobuf from the movie service definition and create a gRPC client from it
 const movieProtoDefinition = protoLoader.loadSync(movieProtoPath, {
   keepCase: true,
   longs: String,
@@ -14,11 +15,17 @@ const movieProtoDefinition = protoLoader.loadSync(movieProtoPath, {
   defaults: true,
   oneofs: true,
 });
+
+// Load the protobuf
 const movieProto = grpc.loadPackageDefinition(movieProtoDefinition).movie;
+
+// Create a gRPC client for the movie service defined in the movieService.proto file
 const clientMovies = new movieProto.MovieService(
   "localhost:50051",
   grpc.credentials.createInsecure()
 );
+
+// Import the Movie model from the movieModel.js file
 const router = express.Router();
 // GET /api/v1/movies
 router.get("/", (req, res) => {
@@ -32,17 +39,4 @@ router.get("/", (req, res) => {
   });
 });
 module.exports = router;
-// GET /api/v1/movies
-//router.get("/", movieController.getMovies);
-
-// GET /api/v1/movies/:id
-// router.get("/:id", movieController.getMovieById);
-
-// // POST /api/v1/movies
-// router.post("/", movieController.createMovie);
-
-// // PUT /api/v1/movies/:id
-// router.put("/:id", movieController.updateMovie);
-
-// // DELETE /api/v1/movies/:id
-// router.delete("/:id", movieController.deleteMovie);
+s;

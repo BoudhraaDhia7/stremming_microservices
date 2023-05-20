@@ -1,6 +1,7 @@
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 
+// Load the protobuf file for the reservation service definition and create a gRPC client from it
 const packageDefinition = protoLoader.loadSync("reservationService.proto", {
   keepCase: true,
   longs: String,
@@ -9,12 +10,14 @@ const packageDefinition = protoLoader.loadSync("reservationService.proto", {
   oneofs: true,
 });
 
+// Load the protobuf file
 const reservationProto =
   grpc.loadPackageDefinition(packageDefinition).reservation;
 
-// Import the reservation model
+// Import the reservation model from the reservationModel.js file
 const Reservation = require("../src/models/reservationModel");
 
+// Resolvers define the technique for fetching the types defined in the schema above
 function getReservations(call, callback) {
   Reservation.getAll(function (error, reservations) {
     if (error) {
@@ -30,6 +33,7 @@ function getReservations(call, callback) {
   });
 }
 
+// Resolvers define the technique for fetching the types defined in the schema above and start the gRPC server on port 50052
 function startServer() {
   const server = new grpc.Server();
   server.addService(reservationProto.ReservationService.service, {

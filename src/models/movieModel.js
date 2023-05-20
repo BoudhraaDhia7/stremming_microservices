@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 
-// Create and connect to the database
+// Create and connect to the database file (if it doesn't exist, it will be created) and create the movies table if it doesn't exist 
 const db = new sqlite3.Database("../../database.db", (err) => {
   if (err) {
     console.error(err.message);
@@ -39,6 +39,8 @@ class Movie {
     this.year = year;
   }
 
+
+  // Define the getAll method to retrieve all movies from the database 
   static getAll(callback) {
     db.all("SELECT * from movies;", [], function (err, rows) {
       if (err) {
