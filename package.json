@@ -17,6 +17,7 @@
     "google-protobuf": "^3.21.2",
     "grpc": "^1.24.11",
     "kafka-node": "^5.0.0",
-    "mongoose": "^7.2.0"
+    "mongoose": "^7.2.0",
+    "sqlite3": "^5.1.6"
   }
 }
