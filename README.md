@@ -1,6 +1,6 @@
-# Project Name
+# STREMMING_MICROSERVICES
 
-Short project description or tagline
+Microservices with gRPC, GraphQL, REST and Kafka.
 
 ## Description
 
