@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 
-// Create and connect to the database file (if it doesn't exist, it will be created) and create the movies table if it doesn't exist 
+// Create and connect to the database file (if it doesn't exist, it will be created) and create the movies table if it doesn't exist
 const db = new sqlite3.Database("../../database.db", (err) => {
   if (err) {
     console.error(err.message);
@@ -9,25 +9,16 @@ const db = new sqlite3.Database("../../database.db", (err) => {
   console.log("Base de données connectée.");
 });
 
-// Create the movies table if it doesn't exist
+//Create the movies table if it doesn't exist
 // db.run(`
 
-// CREATE TABLE reservations (
-//   id INT PRIMARY KEY,
-//   name VARCHAR(255),
-//   movie_id INT
-// );
-
-// INSERT INTO reservation (id, name, movie_id)
-// VALUES
-//   (1, 'John', 1),
-//   (2, 'Alice', 2),
-//   (3, 'Michael', 1),
-//   (4, 'Emily', 3),
-//   (5, 'David', 2),
-//   (6, 'Sophia', 4),
-//   (7, 'Daniel', 1),
-//   (8, 'Olivia', 3);
+// INSERT INTO movies (title, description, year)
+//     VALUES
+//       ('Movie 1', 'Description 1', 2021),
+//       ('Movie 2', 'Description 2', 2022),
+//       ('Movie 3', 'Description 3', 2023),
+//       ('Movie 4', 'Description 4', 2024),
+//       ('Movie 5', 'Description 5', 2025);
 
 // `);
 
@@ -39,8 +30,7 @@ class Movie {
     this.year = year;
   }
 
-
-  // Define the getAll method to retrieve all movies from the database 
+  // Define the getAll method to retrieve all movies from the database
   static getAll(callback) {
     db.all("SELECT * from movies;", [], function (err, rows) {
       if (err) {

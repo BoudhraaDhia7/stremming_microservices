@@ -28,7 +28,7 @@ function getMovies(call, callback) {
         details: "Error retrieving movies",
       });
     } else {
-      console.log("Movies:", movies);
+      //console.log("Movies:", movies);
       callback(null, { movies });
     }
   });
@@ -47,13 +47,13 @@ function startServer() {
 
     // Process the message and save it to the database
     const reservationData = JSON.parse(message.value);
-    
-    // Save reservationData to the Reservation model 
+
+    // Save reservationData to the Reservation model
     getMovies(null, function (error, response) {
       if (error) {
         console.error("Error fetching movies:", error);
       } else {
-        console.log("Movies:", response.movies);
+        // console.log("Movies:", response.movies);
       }
     });
   });
